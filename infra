@@ -1,6 +1,1 @@
-mkdir -p infra/openshift
-touch app.py requirements.txt Dockerfile
-touch infra/openshift/deployment.yaml
-touch infra/openshift/service.yaml
-touch infra/openshift/route.yaml
-touch infra/openshift/hpa.yaml
+
