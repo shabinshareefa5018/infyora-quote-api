@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: quote-api
-        image: <REGISTRY>/quote-api:latest   # Replace this!
+        image: quay.io/shabinshareefa5018/quote-api:latest   # Replace this!
         ports:
         - containerPort: 8080
         securityContext:
