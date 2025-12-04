@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quote-api
+  labels:
+    app: quote-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quote-api
+  template:
+    metadata:
+      labels:
+        app: quote-api
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "8080"
+    spec:
+      containers:
+      - name: quote-api
+        image: <REGISTRY>/quote-api:latest   # Replace this!
+        ports:
+        - containerPort: 8080
+        securityContext:
+          runAsNonRoot: true
+          allowPrivilegeEscalation: false
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 20
